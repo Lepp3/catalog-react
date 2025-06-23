@@ -1,4 +1,7 @@
-export const products = [
+import { type SingleItem } from "../components/Catalog/Catalog.types";
+
+
+export const products: SingleItem[] = [
   {
     id: '1',
     name: 'Visionary logistical process improvement',
