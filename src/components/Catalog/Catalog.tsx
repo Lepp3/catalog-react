@@ -1,44 +1,13 @@
-import { useState } from "react"
-import { products } from "../../assets/products"
+
+import { useCatalogFilter } from "./Catalog.logic"
 import { type SingleItem } from "./Catalog.types"
 import SingleItemComponent from "./SingleItem/SingleItem"
 
 
 
 function Catalog(){
-
-    const [items, setItems] = useState(products);
-    const [filter, setFilter] = useState('');
-
-    const handleFilter = (e:React.ChangeEvent<HTMLSelectElement>) =>{
-        const selectedFilter = e.target.value;
-        setFilter(selectedFilter);
-
-        let filteredItems = [...items];
-
-        switch (selectedFilter) {
-            case "toys":
-              filteredItems = products.filter(item=>item.category === 'Toys');
-              break;
-            case "books":
-              filteredItems = products.filter(item=>item.category === 'Books');
-              break;
-            case "electronics":
-            filteredItems = products.filter(item=>item.category === 'Electronics');
-
-              break;
-            case "home":
-                filteredItems = products.filter(item=>item.category === 'Home');
-              break;
-              case "clothing":
-                filteredItems = products.filter(item=>item.category === 'Clothing');
-              break;
-            default:
-              break;
-          };
-
-          setItems(filteredItems);
-    }
+    const {items, filter, handleFilter} = useCatalogFilter();
+    
 
     return(
         <>
