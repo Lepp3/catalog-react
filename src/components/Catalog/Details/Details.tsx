@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { products } from '../../../assets/products';
+import { useCart } from '../../../context/useContext';
 
 
 function Details() {
   const { id } = useParams();
   const product = products.find((product) => product.id === id);
+  const {addToCart} = useCart();
 
   if(!product){
     return (
@@ -18,7 +20,7 @@ function Details() {
       <p>{product.description}</p>
       <img src={product.image} alt={product.name} />
       <p>${product.price}</p>
-      <button>Dummy add to cart for now</button>
+      <button onClick={()=>addToCart(product)}> Add to cart</button>
     </>
   );
 }

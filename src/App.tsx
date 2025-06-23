@@ -4,13 +4,14 @@ import Footer from './components/Footer/Footer';
 import HomePageComponent from './components/homePage/Home';
 import Catalog from './components/Catalog/Catalog';
 import Details from './components/Catalog/Details/Details';
+import { CartProvider } from './context/CartProvider';
 import './App.css'
 
 function App() {
  
 
   return (
-    
+    <CartProvider>
     <Router>
       <Header/>
       <main>
@@ -24,7 +25,7 @@ function App() {
     
       <Footer/>
       </Router>
-    
+    </CartProvider>
   )
 }
 
