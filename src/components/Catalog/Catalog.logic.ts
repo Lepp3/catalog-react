@@ -2,7 +2,7 @@ import { useState } from "react"
 import { products } from "../../assets/products"
 
 
-export const useCatalogFilter = () => {
+export const useCatalogCategoryFilter = () => {
   const [items, setItems] = useState(products)
   const [filter, setFilter] = useState('')
 
@@ -39,5 +39,32 @@ export const useCatalogFilter = () => {
     items,
     filter,
     handleFilter,
+  }
+}
+
+export const useCatalogNameFilter = () =>{
+    const [items, setItems] = useState(products)
+    const [query, setQuery] = useState('')
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputQuery = e.target.value
+    setQuery(inputQuery)
+
+
+    if(!inputQuery){
+        
+        return;
+    }
+    
+    const filteredItems = products.filter(item => item.name.toLowerCase().includes(inputQuery))
+        
+
+    setItems(filteredItems)
+  }
+
+  return {
+    items,
+    query,
+    handleSearch,
   }
 }

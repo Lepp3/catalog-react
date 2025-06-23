@@ -1,12 +1,14 @@
 
-import { useCatalogFilter } from "./Catalog.logic"
+import { useCatalogCategoryFilter, useCatalogNameFilter } from "./Catalog.logic"
 import { type SingleItem } from "./Catalog.types"
 import SingleItemComponent from "./SingleItem/SingleItem"
 
 
 
 function Catalog(){
-    const {items, filter, handleFilter} = useCatalogFilter();
+    const {items:categoryItems , filter, handleFilter} = useCatalogCategoryFilter();
+    const {items:searchItems, query, handleSearch} = useCatalogNameFilter();
+
     
 
     return(
@@ -26,8 +28,13 @@ function Catalog(){
           </div> 
 
 
+            <label>
+        Search by name:
+        <input type="text" value={query} onChange={handleSearch} />
+      </label>
+
         <ul>
-            {items.map((item:SingleItem)=>(
+            {(query ? searchItems : categoryItems).map((item:SingleItem)=>(
                 <SingleItemComponent key={item.id} {...item}/>
             ))}
         </ul>
