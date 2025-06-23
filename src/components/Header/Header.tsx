@@ -1,7 +1,13 @@
+import { Link } from "react-router-dom"
+
+
 function Header(){
     return(
         <>
-        <p>Header Component</p>
+        <ul>
+            <li><Link to={`/`}>Home</Link></li>
+            <li><Link to={`/catalog`}>Catalog</Link></li>
+        </ul>
         </>
     )
 }
