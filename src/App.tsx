@@ -5,7 +5,7 @@ import HomePageComponent from './components/homePage/Home';
 import Catalog from './components/Catalog/Catalog';
 import Details from './components/Catalog/Details/Details';
 import { CartProvider } from './context/CartProvider';
-import { GlobalStyle } from './utils/GlobalStyles';
+import { AppWrapper,GlobalStyle,StyledMain } from './utils/GlobalStyles';
 
 
 function App() {
@@ -14,17 +14,19 @@ function App() {
   return (
     <CartProvider>
       <GlobalStyle/>
+      <AppWrapper>
     <Router>
       <Header/>
-      <main>
+      <StyledMain>
         <Routes>
           <Route path='/' element={<HomePageComponent />} />
           <Route path='/catalog' element={<Catalog />} />
           <Route path='/details/:id' element={<Details />} />
         </Routes>
-      </main>
+      </StyledMain>
       <Footer/>
       </Router>
+      </AppWrapper>
     </CartProvider>
   )
 }

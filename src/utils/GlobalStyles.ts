@@ -2,6 +2,16 @@ import { createGlobalStyle, styled } from "styled-components";
 import { Link } from "react-router-dom";
 
 
+export const AppWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+`
+
+export const StyledMain = styled.main`
+flex: 1;
+`
+
 export const StyledLink = styled(Link)`
 text-decoration: none;
 font-weight: bold;
@@ -23,9 +33,9 @@ export const GlobalStyle = createGlobalStyle`
 
   html, body {
     font-family: 'Inter', sans-serif;
-    background-color: #fff;
+    background-color: #e1e3de;
     font-size: 16px;
-    height: 100vh;
+    height: 100%;
 }
     a {
     text-decoration: none;
@@ -52,5 +62,5 @@ export const Container = styled.div`
   padding: 1rem;             
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
 `

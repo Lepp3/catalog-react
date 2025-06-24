@@ -1,16 +1,21 @@
 import type { SingleItem } from "../Catalog.types";
-import { Link } from "react-router-dom";
+import { StyledSingleItemCard, StyledImg, StyledSingleItemCardTopPart,StyledButtonHolder, StyledCategory, StyledItemDescription, StyledItemName} from "./SingleItem.styles";
+import { StyledLink } from "../../../utils/GlobalStyles";
 
 function SingleItemComponent(productInfo:SingleItem){
 
     return(
-        <li>
-            <img src={productInfo.image} alt="product image" />
-            <p>{productInfo.name}</p>
-            <p>{productInfo.description}</p>
-            <p>{productInfo.category}</p>
-            <Link to={`/details/${productInfo.id}`}>View Details</Link>
-        </li>
+        <StyledSingleItemCard>
+            <StyledSingleItemCardTopPart>
+            <StyledImg src={productInfo.image} alt="product image" />
+            <StyledItemName>{productInfo.name}</StyledItemName>
+            <StyledItemDescription>{productInfo.description}</StyledItemDescription>
+            <StyledCategory>{productInfo.category}</StyledCategory>
+            </StyledSingleItemCardTopPart>
+            <StyledButtonHolder>
+            <StyledLink to={`/details/${productInfo.id}`}>View Details</StyledLink>
+            </StyledButtonHolder>
+        </StyledSingleItemCard>
     )
 }
 
