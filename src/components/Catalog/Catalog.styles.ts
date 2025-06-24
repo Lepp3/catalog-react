@@ -37,5 +37,13 @@ export const StyledCardHolder = styled.section`
 export const StyledForm = styled.form`
     display: flex;
     gap: 5px;
+    align-items: center;
     
+`;
+
+
+export const StyledSubmitButton = styled.button`
+padding: 5px;
+border: 1px solid black;
+border-radius: 3px;
 `

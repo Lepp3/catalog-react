@@ -10,6 +10,7 @@ import {
   StyledCardHolder,
   CatalogWrapper,
   StyledForm,
+  StyledSubmitButton
 } from './Catalog.styles';
 import { products } from '../../assets/products';
 
@@ -52,10 +53,10 @@ function Catalog() {
             </label>
             <input
               type="text"
-              
+              placeholder='Submit empty to reset'
               onChange={(e) => setQuery(e.target.value)}
             />
-            <button type="submit">Search</button>
+            <StyledSubmitButton type="submit">Search</StyledSubmitButton>
           
         </StyledForm>
       </StyledFilterContainer>
