@@ -4,7 +4,14 @@ import {
 } from './Catalog.logic';
 import { type SingleItem } from './Catalog.types';
 import SingleItemComponent from './SingleItem/SingleItem';
-import { StyledCatalogHeader, StyledFilterContainer, StyledCardHolder, CatalogWrapper } from './Catalog.styles';
+import {
+  StyledCatalogHeader,
+  StyledFilterContainer,
+  StyledCardHolder,
+  CatalogWrapper,
+  StyledForm,
+} from './Catalog.styles';
+import { products } from '../../assets/products';
 
 function Catalog() {
   const {
@@ -12,7 +19,18 @@ function Catalog() {
     filter,
     handleFilter,
   } = useCatalogCategoryFilter();
-  const { items: searchItems, query, handleSearch } = useCatalogNameFilter();
+  const {
+    items: searchItems,
+    handleSearch,
+    setQuery,
+  } = useCatalogNameFilter();
+
+  const hasSearchResults = searchItems.length > 0;
+  const hasCategoryResults = categoryItems.length > 0;
+
+  const itemsToRender = hasSearchResults ? searchItems
+    : hasCategoryResults ? categoryItems
+    : products;
 
   return (
     <CatalogWrapper>
@@ -28,17 +46,22 @@ function Catalog() {
           <option value="toys">Toys</option>
           <option value="clothing">Clothing</option>
         </select>
-
-         <label>
-        Search by name: 
-        <input type="text" value={query} onChange={handleSearch} />
-      </label>
+        <StyledForm onSubmit={handleSearch}>
+          <label>
+            Search by name:
+            </label>
+            <input
+              type="text"
+              
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button type="submit">Search</button>
+          
+        </StyledForm>
       </StyledFilterContainer>
 
-     
-
       <StyledCardHolder>
-        {(query ? searchItems : categoryItems).map((item: SingleItem) => (
+        {itemsToRender.map((item: SingleItem) => (
           <SingleItemComponent key={item.id} {...item} />
         ))}
       </StyledCardHolder>

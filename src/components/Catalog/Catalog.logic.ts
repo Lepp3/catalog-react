@@ -46,15 +46,20 @@ export const useCatalogNameFilter = () =>{
     const [items, setItems] = useState(products)
     const [query, setQuery] = useState('')
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputQuery = e.target.value
-    setQuery(inputQuery)
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const input = form.querySelector('input[type="text"]') as HTMLInputElement;
+    const inputQuery = input?.value.trim().toLowerCase();
 
 
-    if(!inputQuery){
-        
+    if(!inputQuery.trim()){
+        setItems(products);
         return;
     }
+
+
+    setQuery(inputQuery);
     
     const filteredItems = products.filter(item => item.name.toLowerCase().includes(inputQuery))
         
@@ -66,5 +71,6 @@ export const useCatalogNameFilter = () =>{
     items,
     query,
     handleSearch,
+    setQuery,
   }
 }

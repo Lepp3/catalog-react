@@ -32,4 +32,10 @@ export const StyledCardHolder = styled.section`
     padding: 20px;
     justify-content: space-around;
 
+`;
+
+export const StyledForm = styled.form`
+    display: flex;
+    gap: 5px;
+    
 `
