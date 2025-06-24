@@ -21,11 +21,12 @@ justify-content: space-around;
 
 
 export const StyledNavigationLink = styled(Link)`
-padding: 5px;
-border: 1px solid black;
+padding: 15px;
+border: 1px solid white;
 border-radius: 5px;
 
 &:hover{
-background-color:lightgray
+background-color:white;
+color: #112d6a;
 }
 `

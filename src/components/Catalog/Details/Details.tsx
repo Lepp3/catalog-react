@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { products } from '../../../assets/products';
 import { useCart } from '../../../context/useContext';
+import { DetailsWrapper,StyledItemHeading, StyledItemDescription, StyledItemImage, StyledAddToCartButton } from './Details.styles';
 
 
 function Details() {
@@ -15,13 +16,13 @@ function Details() {
   }
 
   return (
-    <>
-      <h1>{product.name}</h1>
-      <p>{product.description}</p>
-      <img src={product.image} alt={product.name} />
-      <p>${product.price}</p>
-      <button onClick={()=>addToCart(product)}> Add to cart</button>
-    </>
+    <DetailsWrapper>
+      <StyledItemHeading>{product.name}</StyledItemHeading>
+      <StyledItemDescription>{product.description}</StyledItemDescription>
+      <StyledItemImage src={product.image} alt={product.name} />
+      <p>Price: ${product.price}</p>
+      <StyledAddToCartButton onClick={()=>addToCart(product)}> Add to cart</StyledAddToCartButton>
+    </DetailsWrapper>
   );
 }
 

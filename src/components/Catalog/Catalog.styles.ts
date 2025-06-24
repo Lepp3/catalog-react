@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
 
+
+export const CatalogWrapper = styled.div`
+display: flex;
+flex-direction: column;
+padding: 20px 0px;
+gap: 10px;
+`
+
 export const StyledCatalogHeader = styled.h1`
     font-size: 2rem;
     font-weight: bold;
@@ -22,5 +30,6 @@ export const StyledCardHolder = styled.section`
     flex-wrap: wrap;
     gap: 1rem;
     padding: 20px;
+    justify-content: space-around;
 
 `
