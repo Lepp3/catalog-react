@@ -1,15 +1,16 @@
 import { useCart } from "../../context/useContext";
+import { CartContainer, ClearCartButton } from "./Cart.styles";
 
 
 function Cart(){
     const {totalItems, totalPrice, clearCart} = useCart();
 
     return (
-  <>
+  <CartContainer>
     <h2>Cart ({totalItems} items)</h2>
     <p>Total: ${totalPrice.toFixed(2)}</p>
-    <button onClick={() => clearCart()}>Clear Cart</button>
-  </>
+    <ClearCartButton onClick={() => clearCart()}>Clear Cart</ClearCartButton>
+  </CartContainer>
     )
 }
 

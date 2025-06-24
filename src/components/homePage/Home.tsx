@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom"
+import { StyledLink, Container } from "../../utils/GlobalStyles";
+import { HomeHeading, HomeSubheading } from "./Home.styles";
 
 function HomePageComponent(){
     return(
-        <>
-        <p>Welcome to...this</p>
-        <p>Perhaps you would like to see our <Link to={`/catalog`}>Catalog</Link>?</p>
-        </>
+        <Container>
+        <HomeHeading>Welcome to...this</HomeHeading>
+        <HomeSubheading>Perhaps you would like to see our <StyledLink to={`/catalog`}>Catalog</StyledLink>?</HomeSubheading>
+        </Container>
     )
 }
 

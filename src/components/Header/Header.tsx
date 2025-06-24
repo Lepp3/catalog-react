@@ -1,16 +1,17 @@
-import { Link } from "react-router-dom"
+
 import Cart from "../Cart/Cart"
+import { NavigationContainer,NavigationList,StyledNavigationLink } from "./Header.styles"
 
 
 function Header(){
     return(
-        <>
-        <ul>
-            <li><Link to={`/`}>Home</Link></li>
-            <li><Link to={`/catalog`}>Catalog</Link></li>
-        </ul>
+        <NavigationContainer>
+        <NavigationList>
+            <li><StyledNavigationLink to={`/`}>Home</StyledNavigationLink></li>
+            <li><StyledNavigationLink to={`/catalog`}>Catalog</StyledNavigationLink></li>
+        </NavigationList>
         <Cart/>
-        </>
+        </NavigationContainer>
     )
 }
 
