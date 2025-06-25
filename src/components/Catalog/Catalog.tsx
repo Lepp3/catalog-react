@@ -10,28 +10,37 @@ import {
   StyledCardHolder,
   CatalogWrapper,
   StyledForm,
-  StyledSubmitButton
+  StyledSubmitButton,
 } from './Catalog.styles';
 import { products } from '../../assets/products';
+import { useState } from 'react';
 
 function Catalog() {
-  const {
-    items: categoryItems,
-    filter,
-    handleFilter,
-  } = useCatalogCategoryFilter();
-  const {
-    items: searchItems,
-    handleSearch,
-    setQuery,
-  } = useCatalogNameFilter();
+  const [query, setQuery] = useState('');
+  const [filter, setFilter] = useState('');
+  const [searchInput, setSearchInput] = useState('');
 
-  const hasSearchResults = searchItems.length > 0;
-  const hasCategoryResults = categoryItems.length > 0;
+  const {items: searchItems} = useCatalogNameFilter(query);
+  const {items: categoryItems} = useCatalogCategoryFilter(filter);
 
-  const itemsToRender = hasSearchResults ? searchItems
-    : hasCategoryResults ? categoryItems
-    : products;
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFilter('');
+    setQuery(searchInput);
+  };
+
+  const handleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilter(e.target.value);
+    setQuery('');
+    setSearchInput('');
+  };
+
+  const isSearching = query.trim() !== '';
+const itemsToRender = isSearching
+  ? searchItems
+  : categoryItems.length > 0
+  ? categoryItems
+  : products;
 
   return (
     <CatalogWrapper>
@@ -48,16 +57,13 @@ function Catalog() {
           <option value="clothing">Clothing</option>
         </select>
         <StyledForm onSubmit={handleSearch}>
-          <label>
-            Search by name:
-            </label>
-            <input
-              type="text"
-              placeholder='Submit empty to reset'
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <StyledSubmitButton type="submit">Search</StyledSubmitButton>
-          
+          <label>Search by name:</label>
+          <input
+            type="text"
+            placeholder="Submit empty to reset"
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+          <StyledSubmitButton type="submit">Search</StyledSubmitButton>
         </StyledForm>
       </StyledFilterContainer>
 

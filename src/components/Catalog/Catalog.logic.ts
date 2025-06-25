@@ -1,76 +1,43 @@
-import { useState } from "react"
-import { products } from "../../assets/products"
+import { useState, useEffect } from 'react';
+import { products } from '../../assets/products';
 
+export const useCatalogCategoryFilter = (filter: string) => {
+  const [items, setItems] = useState(products);
 
-export const useCatalogCategoryFilter = () => {
-  const [items, setItems] = useState(products)
-  const [filter, setFilter] = useState('')
+  useEffect(() => {
+    let filteredItems = [...products];
 
-  const handleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedFilter = e.target.value
-    setFilter(selectedFilter)
-
-    let filteredItems = [...products]
-
-    switch (selectedFilter) {
-      case 'toys':
-        filteredItems = filteredItems.filter(item => item.category === 'Toys')
-        break
-      case 'books':
-        filteredItems = filteredItems.filter(item => item.category === 'Books')
-        break
-      case 'electronics':
-        filteredItems = filteredItems.filter(item => item.category === 'Electronics')
-        break
-      case 'home':
-        filteredItems = filteredItems.filter(item => item.category === 'Home')
-        break
-      case 'clothing':
-        filteredItems = filteredItems.filter(item => item.category === 'Clothing')
-        break
-      default:
-        break
-    }
-
-    setItems(filteredItems)
-  }
+    filteredItems = filter
+      ? products.filter(
+          (item) => item.category.toLowerCase() === filter.toLowerCase()
+        )
+      : products;
+    setItems(filteredItems);
+  }, [filter]);
 
   return {
     items,
-    filter,
-    handleFilter,
-  }
-}
+  };
+};
 
-export const useCatalogNameFilter = () =>{
-    const [items, setItems] = useState(products)
-    const [query, setQuery] = useState('')
+export const useCatalogNameFilter = (query: string) => {
+  const [items, setItems] = useState(products);
 
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const input = form.querySelector('input[type="text"]') as HTMLInputElement;
-    const inputQuery = input?.value.trim().toLowerCase();
+  useEffect(() => {
+    const inputQuery = query.trim().toLowerCase();
 
-
-    if(!inputQuery.trim()){
-        setItems(products);
-        return;
+    if (!inputQuery) {
+      setItems(products);
+      return;
     }
 
-
-    setQuery(inputQuery);
-    
-    const filteredItems = products.filter(item => item.name.toLowerCase().includes(inputQuery))
-        
-
-    setItems(filteredItems)
-  }
+    const filtered = products.filter((item) =>
+      item.name.toLowerCase().includes(inputQuery)
+    );
+    setItems(filtered);
+  }, [query]);
 
   return {
     items,
-    query,
-    handleSearch,
-    setQuery,
-  }
-}
+  };
+};
