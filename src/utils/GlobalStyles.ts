@@ -1,26 +1,25 @@
-import { createGlobalStyle, styled } from "styled-components";
-import { Link } from "react-router-dom";
-
+import { createGlobalStyle, styled } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const AppWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
 
 export const StyledMain = styled.main`
-flex: 1;
-`
+  flex: 1;
+`;
 
 export const StyledLink = styled(Link)`
-text-decoration: none;
-font-weight: bold;
-color: #356ec9;
+  text-decoration: none;
+  font-weight: bold;
+  color: #356ec9;
 
-&:hover{
-color: #528deb
-}
-`
+  &:hover {
+    color: #528deb;
+  }
+`;
 
 export const GlobalStyle = createGlobalStyle`
 *,
@@ -53,14 +52,3 @@ export const GlobalStyle = createGlobalStyle`
     background: none;
   }
 `;
-
-
-export const Container = styled.div`
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;            
-  padding: 1rem;             
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-`

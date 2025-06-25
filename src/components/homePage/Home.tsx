@@ -1,5 +1,5 @@
-import { StyledLink, Container } from "../../utils/GlobalStyles";
-import { HomeHeading, HomeSubheading } from "./Home.styles";
+import { StyledLink } from "../../utils/GlobalStyles";
+import { HomeHeading, HomeSubheading, Container } from "./Home.styles";
 
 function HomePageComponent(){
     return(
