@@ -25,7 +25,6 @@ function Details() {
       <StyledItemImage src={product.image} alt={product.name} />
       <p>Price: ${product.price}</p>
       <StyledAddToCartButton onClick={() => addToCart(product)}>
-        {' '}
         Add to cart
       </StyledAddToCartButton>
     </DetailsWrapper>
